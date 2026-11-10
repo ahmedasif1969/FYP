@@ -1,0 +1,31 @@
+; Copy this file to pjsip_fyp.conf and replace CHANGE_THIS_PASSWORD.
+; Never commit pjsip_fyp.conf because it contains a private SIP credential.
+
+[fyp-transport]
+type=transport
+protocol=udp
+bind=0.0.0.0:5062
+
+[1001]
+type=endpoint
+transport=fyp-transport
+context=fyp-internal
+disallow=all
+allow=ulaw
+auth=1001
+aors=1001
+direct_media=no
+rtp_symmetric=yes
+force_rport=yes
+rewrite_contact=yes
+
+[1001]
+type=auth
+auth_type=userpass
+username=1001
+password=CHANGE_THIS_PASSWORD
+
+[1001]
+type=aor
+max_contacts=1
+remove_existing=yes

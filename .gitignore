@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+transcripts/
+asterisk/pjsip_fyp.conf
+firewall-result.txt
+allow-phone-firewall.ps1
+tmp/
+inspect_proposal.py
+
