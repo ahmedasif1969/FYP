@@ -1,0 +1,53 @@
+{
+  "healthcare_appointment": [
+    "Can I book an appointment with an eye doctor?",
+    "I need to schedule a medical checkup",
+    "Can my child see a doctor next week?",
+    "I want to make an appointment with a dentist",
+    "How do I reserve a slot for a consultation?",
+    "Is a specialist available to see my mother tomorrow?",
+    "Can I schedule a follow up with my doctor?",
+    "Please help me arrange a hospital appointment",
+    "Can I see a skin specialist on Saturday?",
+    "I want to schedule a visit for a routine checkup"
+  ],
+  "healthcare_location": [
+    "Where is Alkhidmat Hospital in Korangi?",
+    "What is the address of your hospital in Nazimabad?",
+    "How do I get to your medical center in Malir?",
+    "Is there an Alkhidmat clinic near my home?",
+    "Please give me directions to the hospital",
+    "Which road is the Korangi hospital on?",
+    "What is the nearest Alkhidmat health center?",
+    "Can you tell me the location of your diagnostic lab?",
+    "Where is the hospital in North Karachi?",
+    "What is the location of the Alkhidmat clinic in Orangi?"
+  ],
+  "funeral_transport": [
+    "Our family needs a Mayyat bus",
+    "Can you arrange funeral transport?",
+    "We need a vehicle to take the deceased to the cemetery",
+    "Is a funeral bus available tomorrow?",
+    "How can we transport the body for burial?",
+    "My uncle passed away and we need transport",
+    "Do you have a bus for a funeral in Malir?",
+    "Who can help move the deceased to the graveyard?",
+    "We need a hearse for my grandfather",
+    "How can I request a Mayyat van for burial?",
+    "I want to request a funeral bus for my family",
+    "We want a funeral transport vehicle",
+    "I want to book a Mayyat bus for burial"
+  ],
+  "out_of_scope": [
+    "Can you repair my internet connection?",
+    "Where can I buy a train ticket?",
+    "How do I renew my passport?",
+    "I need help fixing my washing machine",
+    "Can you book a hotel room?",
+    "What is the weather forecast for today?",
+    "I want to register for an IT course",
+    "Do you sell mobile phones?",
+    "I need help paying my electricity bill",
+    "Can I get a business loan?"
+  ]
+}
