@@ -1,5 +1,5 @@
 {
-  "healthcare_appointment": [
+  "health_services": [
     "Can I book an appointment with an eye doctor?",
     "I need to schedule a medical checkup",
     "Can my child see a doctor next week?",
@@ -9,9 +9,9 @@
     "Can I schedule a follow up with my doctor?",
     "Please help me arrange a hospital appointment",
     "Can I see a skin specialist on Saturday?",
-    "I want to schedule a visit for a routine checkup"
-  ],
-  "healthcare_location": [
+    "I want to schedule a visit for a routine checkup",
+    "Do you take bookings for dental patients?",
+    "Can I set up a consultation for tooth pain?",
     "Where is Alkhidmat Hospital in Korangi?",
     "What is the address of your hospital in Nazimabad?",
     "How do I get to your medical center in Malir?",
@@ -23,7 +23,7 @@
     "Where is the hospital in North Karachi?",
     "What is the location of the Alkhidmat clinic in Orangi?"
   ],
-  "funeral_transport": [
+  "community_services_funeral": [
     "Our family needs a Mayyat bus",
     "Can you arrange funeral transport?",
     "We need a vehicle to take the deceased to the cemetery",
@@ -38,7 +38,7 @@
     "We want a funeral transport vehicle",
     "I want to book a Mayyat bus for burial"
   ],
-  "out_of_scope": [
+  "other": [
     "Can you repair my internet connection?",
     "Where can I buy a train ticket?",
     "How do I renew my passport?",
@@ -48,6 +48,18 @@
     "I want to register for an IT course",
     "Do you sell mobile phones?",
     "I need help paying my electricity bill",
-    "Can I get a business loan?"
+    "Can I get a business loan?",
+    "How do I apply for a ration package?",
+    "My family needs food assistance this month",
+    "Is there a grocery support program for low income households?",
+    "Can I collect a Ramadan ration box?",
+    "Where can I ask about a food distribution event?",
+    "Our family has run out of groceries and needs help",
+    "I cannot afford food for my children",
+    "How do I register for monthly ration support?",
+    "Can my neighbour receive a food parcel?",
+    "Who can help me get a package of essential groceries?",
+    "What papers do I need to qualify for ration assistance?",
+    "Does Alkhidmat give food packs to families in need?"
   ]
 }

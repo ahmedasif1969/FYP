@@ -11,8 +11,8 @@ import wave
 from collections import deque
 from pathlib import Path
 
-from test_pipeline import KORANGI_TRANSCRIPT_SPELLINGS, LOCAL_MODELS, generate_reply, store_call, translate_audio
 from intent_classifier import IntentClassifier
+from test_pipeline import LOCAL_MODELS, generate_reply, select_reply_route, store_call, translate_audio
 
 
 def capture_speech(audio_fd, recording):
@@ -73,19 +73,20 @@ def main():
     with wave.open(str(recording), "rb") as audio:
         has_audio = audio.getnframes() > 0
     transcript = translate_audio(recording, model) if has_audio else ""
-    intent, score, programme, reply, reply_source = generate_reply(
+    intent, score, programme, reply, reply_source, faq_id, faq_distance = generate_reply(
         transcript, reply_wav, awaiting_hospital=agi.get("agi_arg_4") == "hospital",
         llm_model=os.getenv("FYP_LLM_MODEL", LOCAL_MODELS[0]) if voice_mode else None,
         qwen_only=agi.get("agi_arg_5") == "strict",
+        use_vector_search=voice_mode,
     )
     try:
-        store_call(call_id, transcript, intent, score, programme, reply, model, reply_source)
+        store_call(call_id, transcript, intent, score, programme, reply, model, reply_source, faq_id, faq_distance)
     except (OSError, subprocess.SubprocessError) as error:
         print(f"Kaavish call {call_id}: {error}", file=sys.stderr)
     if voice_mode:
         context = "none"
-        if (intent == "healthcare_location" and KORANGI_TRANSCRIPT_SPELLINGS.isdisjoint(
-                IntentClassifier.tokens(transcript))):
+        route, _, _ = select_reply_route(intent, set(IntentClassifier.tokens(transcript)))
+        if route == "healthcare_location" and faq_id is None:
             context = "hospital"
         print(f'SET VARIABLE FYP_CONTEXT "{context}"', flush=True)
         sys.stdin.readline()

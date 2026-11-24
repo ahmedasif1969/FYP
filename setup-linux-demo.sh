@@ -23,7 +23,7 @@ sudo -v
 sudo install -d -m 755 "$target" "$target/venv" "$target/models"
 sudo cp -a --no-preserve=ownership .venv/. "$target/venv/"
 sudo cp -a --no-preserve=ownership "$model_cache" "$target/models/"
-sudo install -m 644 intent_classifier.py intent_examples.json test_pipeline.py \
+sudo install -m 644 intent_classifier.py intent_examples.json demo_faqs.json faq_vectors.py test_pipeline.py \
     /usr/share/asterisk/agi-bin/
 sudo install -m 755 asterisk/fyp_live.py /usr/share/asterisk/agi-bin/fyp_live.py
 sudo install -d -m 700 -o asterisk -g asterisk /var/spool/asterisk/kaavish
@@ -38,6 +38,11 @@ GRANT USAGE ON SCHEMA public TO asterisk;
 GRANT INSERT ON TABLE test_calls TO asterisk;
 GRANT USAGE ON SEQUENCE test_calls_id_seq TO asterisk;
 SQL
+
+sudo -u postgres psql -X -w -v ON_ERROR_STOP=1 -d kaavish_demo \
+    -c 'CREATE EXTENSION IF NOT EXISTS vector;'
+psql -X -w -v ON_ERROR_STOP=1 -d kaavish_demo -f "$project_dir/faq_vectors.sql"
+PGDATABASE=kaavish_demo .venv/bin/python faq_vectors.py
 
 sudo install -m 640 -o root -g asterisk "$sip_config" /etc/asterisk/pjsip_fyp.conf
 sudo install -m 644 asterisk/extensions_live.conf /etc/asterisk/extensions_fyp.conf

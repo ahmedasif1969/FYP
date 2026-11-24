@@ -1,0 +1,97 @@
+[
+  {
+    "id": "health-services-029",
+    "intent": "healthcare_location",
+    "keywords": [
+      "korangi",
+      "kodangi"
+    ],
+    "answer": "Alkhidmat Hospital Korangi is on Landhi Road, Sector 35 C, Korangi.",
+    "required_phrases": [
+      "landhi road",
+      "35 c",
+      "korangi"
+    ],
+    "source_url": "https://alkhidmat.com/programs/health-services",
+    "question": "Where is Alkhidmat Hospital in Korangi?"
+  },
+  {
+    "id": "health-services-026",
+    "intent": "healthcare_location",
+    "keywords": [
+      "nazimabad"
+    ],
+    "exclude_keywords": [
+      "north"
+    ],
+    "answer": "Alkhidmat Hospital Nazimabad is opposite Model Park near the Enquiry Office in Nazimabad.",
+    "required_phrases": [
+      "model park",
+      "nazimabad"
+    ],
+    "source_url": "https://alkhidmat.com/programs/health-services",
+    "question": "What is the address of Alkhidmat Hospital Nazimabad?"
+  },
+  {
+    "id": "health-services-010",
+    "intent": "healthcare_appointment",
+    "keywords": [
+      "appointment",
+      "appointments",
+      "book",
+      "booking",
+      "checkup",
+      "consultation",
+      "doctor",
+      "dentist",
+      "specialist",
+      "schedule"
+    ],
+    "answer": "Please contact your chosen Alkhidmat hospital or clinic to confirm appointment availability.",
+    "required_phrases": [
+      "confirm",
+      "appointment"
+    ],
+    "source_url": "https://alkhidmat.com/programs/health-services",
+    "question": "How can I arrange a healthcare appointment with a doctor?"
+  },
+  {
+    "id": "community-services-012",
+    "intent": "funeral_transport",
+    "keywords": [
+      "mayyat",
+      "funeral",
+      "burial",
+      "hearse",
+      "deceased",
+      "bus",
+      "cemetery",
+      "graveyard"
+    ],
+    "answer": "Alkhidmat Karachi lists a funeral transport service. Please contact the Karachi office to confirm availability and booking.",
+    "required_phrases": [
+      "karachi office",
+      "confirm"
+    ],
+    "source_url": "https://alkhidmat.com/programs/community-service",
+    "question": "How can I book a Mayyat bus for funeral transport?"
+  },
+  {
+    "id": "community-services-008",
+    "intent": "food_assistance",
+    "keywords": [
+      "ration",
+      "rations",
+      "food",
+      "groceries",
+      "grocery"
+    ],
+    "answer": "Alkhidmat Karachi lists food and ration support under Community Services. Please contact the Karachi office to confirm eligibility and distribution.",
+    "required_phrases": [
+      "karachi office",
+      "confirm"
+    ],
+    "source_url": "https://alkhidmat.com/programs/community-service",
+    "question": "Can my family receive ration, groceries, or food assistance?"
+  }
+]

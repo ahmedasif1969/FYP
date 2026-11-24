@@ -6,6 +6,11 @@ import re
 from collections import Counter
 from pathlib import Path
 
+COMMON_WORDS = set(
+    "a an the can could do does how i is it me my of our please to we what who would "
+    "you your for and in on with need want help request get one have".split()
+)
+
 
 class IntentClassifier:
     def __init__(self, examples):
@@ -13,7 +18,10 @@ class IntentClassifier:
         self.word_counts = {}
         self.document_counts = {}
         for intent, sentences in examples.items():
-            counts = Counter(word for sentence in sentences for word in self.tokens(sentence))
+            counts = Counter(
+                word for sentence in sentences for word in self.tokens(sentence)
+                if word not in COMMON_WORDS
+            )
             self.word_counts[intent] = counts
             self.document_counts[intent] = len(sentences)
             self.vocabulary.update(counts)

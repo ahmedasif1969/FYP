@@ -13,3 +13,6 @@ CREATE TABLE IF NOT EXISTS test_calls (
 CREATE INDEX IF NOT EXISTS test_calls_call_id_idx ON test_calls (call_id);
 
 ALTER TABLE test_calls ADD COLUMN IF NOT EXISTS reply_source text;
+
+ALTER TABLE test_calls ADD COLUMN IF NOT EXISTS faq_id text;
+ALTER TABLE test_calls ADD COLUMN IF NOT EXISTS faq_distance double precision;

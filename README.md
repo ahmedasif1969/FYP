@@ -57,14 +57,32 @@ before each request. After a hospital-location clarification, answer with
 same Asterisk call ID. If a turn yields no transcript, the bot plays the
 no-speech prompt and waits for you to hang up.
 
-Extension `103` uses the local Ollama service at `127.0.0.1:11434` with
-`qwen3:4b-instruct` for Korangi address and funeral transport replies. If
-Ollama is unavailable or its answer fails the demo's checks, the handler
-uses the scripted reply. Follow-up prompts and out-of-scope replies are
-scripted. Test the text path without Asterisk with:
+The classifier learns three labels from fictional examples in
+`intent_examples.json`: Health Services, Community Services funeral transport,
+and Other. Hospital location and appointments share the Health Services label
+and use separate FAQ routes. Other requests, including ration support, get a
+scripted message directing callers to an Alkhidmat agent. This message does
+not transfer the call and also applies on extension `104`.
+Install `postgresql-18-pgvector` and run `ollama pull all-minilm`
+before running the Linux setup script. The script loads the curated
+`demo_faqs.json` into PostgreSQL with local embeddings. Re-run
+`PGDATABASE=kaavish_demo .venv/bin/python faq_vectors.py` after editing the
+entries. Each entry names the source FAQ and links to the public programme
+page.
+
+Extensions `103` and `104` rank FAQ entries by cosine distance in
+PostgreSQL within the classified intent. For location questions, resolve
+the branch before returning an address. These extensions use local Ollama
+at `127.0.0.1:11434` with
+`qwen3:4b-instruct`. Qwen composes a reply from the retrieved facts. If
+Ollama is unavailable or its reply fails validation, `103` reads the
+retrieved answer directly and `104` plays an error tone. PostgreSQL stores
+the retrieved `faq_id`, `faq_distance`, and `reply_source` for each turn.
+
+Test the text path without Asterisk with:
 
 ```bash
-.venv/bin/python test_pipeline.py --llm qwen3:4b-instruct \
+PGDATABASE=kaavish_demo .venv/bin/python test_pipeline.py --vector --llm qwen3:4b-instruct \
   --text "Where is Alkhidmat Hospital in Korangi?" \
   --reply-wav "tmp/qwen-reply-$(date +%s).wav"
 ```
