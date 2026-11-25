@@ -75,7 +75,7 @@ username `1001`, the laptop Wi-Fi address as domain/server, the password in
 The Windows Hyper-V firewall rules are limited to the current Wi-Fi subnet;
 if the laptop joins another network, update those rules.
 
-The first `faster-whisper` run downloads its model. The default is `medium` on CPU.
+The first `faster-whisper` run downloads its model. The default is `large-v3` on CPU.
 For a faster but potentially less accurate run, set `FYP_WHISPER_MODEL=small` in the
 EAGI environment. The `FYP_SPEECH_RMS` threshold defaults to 450 and can be
 adjusted for a noisy microphone. This is a test extension; it only hears the

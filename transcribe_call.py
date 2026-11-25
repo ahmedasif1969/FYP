@@ -23,7 +23,7 @@ MIN_FRAMES = 25  # 500 ms
 MAX_FRAMES = 1000  # 20 seconds
 PREROLL_FRAMES = 15  # retain 300 ms before speech detection
 SPEECH_RMS = int(os.getenv("FYP_SPEECH_RMS", "450"))
-MODEL_NAME = os.getenv("FYP_WHISPER_MODEL", "medium")
+MODEL_NAME = os.getenv("FYP_WHISPER_MODEL", "large-v3")
 MODEL_DIR = os.getenv("FYP_WHISPER_MODEL_DIR", "/var/cache/asterisk/fyp-whisper")
 TRANSCRIPT_PATH = os.getenv(
     "FYP_TRANSCRIPT_PATH", "/var/log/asterisk/fyp_transcripts.jsonl"
