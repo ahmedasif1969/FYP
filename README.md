@@ -58,21 +58,21 @@ same Asterisk call ID. If a turn yields no transcript, the bot plays the
 no-speech prompt and waits for you to hang up.
 
 The classifier learns three labels from fictional examples in
-`intent_examples.json`: Health Services, Community Services funeral transport,
-and Other. Hospital location and appointments share the Health Services label
-and use separate FAQ routes. Other requests, including ration support, get a
+`intent_examples.json`: Health Services, Community Services, and Other.
+Community Services includes funeral transport, ration support, and other
+questions covered by its FAQ collection. Other requests get a
 scripted message directing callers to an Alkhidmat agent. This message does
 not transfer the call and also applies on extension `104`.
 Install `postgresql-18-pgvector` and run `ollama pull all-minilm`
-before running the Linux setup script. The script loads the curated
-`demo_faqs.json` into PostgreSQL with local embeddings. Re-run
+before running the Linux setup script. The script loads both JSONL files in
+`faq_sources/` into PostgreSQL with local embeddings (84 entries). Re-run
 `PGDATABASE=kaavish_demo .venv/bin/python faq_vectors.py` after editing the
 entries. Each entry names the source FAQ and links to the public programme
 page.
 
-Extensions `103` and `104` rank FAQ entries by cosine distance in
+Extensions `100`, `103` and `104` rank FAQ entries by cosine distance in
 PostgreSQL within the classified intent. For location questions, resolve
-the branch before returning an address. These extensions use local Ollama
+the branch before returning an address. Extensions `103` and `104` use local Ollama
 at `127.0.0.1:11434` with
 `qwen3:4b-instruct`. Qwen composes a reply from the retrieved facts. If
 Ollama is unavailable or its reply fails validation, `103` reads the

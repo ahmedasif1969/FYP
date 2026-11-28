@@ -8,7 +8,8 @@ from pathlib import Path
 from urllib.request import ProxyHandler, Request, build_opener
 
 EMBEDDING_MODEL = "all-minilm:latest"
-FAQ_FILE = Path(__file__).with_name("demo_faqs.json")
+FAQ_DIR = Path(__file__).with_name("faq_sources")
+PROGRAMMES = ("health-services", "community-services")
 MIN_COSINE_SIMILARITY = 0.35
 
 
@@ -36,9 +37,25 @@ def query_database(sql, **variables):
     return result.stdout.strip()
 
 
+def read_faqs():
+    entries = []
+    for programme in PROGRAMMES:
+        with (FAQ_DIR / f"{programme}.jsonl").open(encoding="utf-8") as source:
+            for line in source:
+                entry = json.loads(line)
+                entry["intent"] = programme.replace("-", "_")
+                entries.append(entry)
+    return entries
+
+
 def index_faqs():
-    entries = json.loads(FAQ_FILE.read_text(encoding="utf-8"))
-    vectors = embed([f"{entry['question']} {entry['answer']}" for entry in entries])
+    entries = read_faqs()
+    vectors = []
+    for offset in range(0, len(entries), 12):
+        vectors.extend(embed([
+            " ".join([entry["question"], *entry["question_variants"], entry["answer"]])
+            for entry in entries[offset:offset + 12]
+        ]))
     sql = io.StringIO()
     sql.write("BEGIN;\nSET LOCAL search_path TO public;\n")
     sql.write("CREATE TEMP TABLE imported_faqs (LIKE faq_entries INCLUDING ALL) ON COMMIT DROP;\n")

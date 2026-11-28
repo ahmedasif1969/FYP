@@ -23,9 +23,11 @@ sudo -v
 sudo install -d -m 755 "$target" "$target/venv" "$target/models"
 sudo cp -a --no-preserve=ownership .venv/. "$target/venv/"
 sudo cp -a --no-preserve=ownership "$model_cache" "$target/models/"
-sudo install -m 644 intent_classifier.py intent_examples.json demo_faqs.json faq_vectors.py test_pipeline.py \
+sudo install -m 644 intent_classifier.py intent_examples.json faq_vectors.py test_pipeline.py \
     /usr/share/asterisk/agi-bin/
 sudo install -m 755 asterisk/fyp_live.py /usr/share/asterisk/agi-bin/fyp_live.py
+sudo install -d -m 755 /usr/share/asterisk/agi-bin/faq_sources
+sudo install -m 644 faq_sources/*.jsonl /usr/share/asterisk/agi-bin/faq_sources/
 sudo install -d -m 700 -o asterisk -g asterisk /var/spool/asterisk/kaavish
 
 psql -X -w -v ON_ERROR_STOP=1 -d kaavish_demo -f "$project_dir/test_calls.sql"
